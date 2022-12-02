@@ -48,8 +48,147 @@
                 <p>3. run <code>Set-ExecutionPolicy -ExecutionPolicy Bypass -Force</code></p>
             </div>
             <div class="row">
-                <p>4. run <code>./main.ps1</code></p>
+                <p>4. run <code>./main.ps1</code> after completing the rest of the setup process</p>
             </div>
+            <br />
+            <div class="row">
+                <h3>Github cloning setup</h3>
+            </div>
+            <div class="row">
+                <ul>
+                    <li>The user must create a GitHub personal access token (manual)</li>
+                    <li>The user must create a token.ps1 file in the same scope as the ps1 script file that clones the repositories (repoCloning.ps1). This can be done in many ways, for this method we create a seperate folder and place both files there. If a seperate method is used, the repoCloning.ps1 file must be changed. The script file is coded to delete itself and the token file in an exact location.</li>
+                </ul>
+            </div>
+            <div class="row">
+                <img class="border-black" src="https://user-images.githubusercontent.com/119271309/205187884-f5f32267-dad5-4891-8633-c9dc84a20696.png" alt="github automation file paths" />
+            </div>
+            <div class="row">
+                <ul>
+                    <li>The user must have enabled scripts to be run on powershell.</li>
+                    <li>The user must have downloaded <a href="https://cli.github.com/">GitHub CLI</a>.</li>
+                </ul>
+            </div>
+            <div class="row">
+                <p>The script will take around 6-7 minutes to finish. This is because the repositories that are to be cloned are massive (promapp-core and promapp-client).</p>
+            </div>
+            <div class="row">
+                <p>The manual part of creating an access token and the token.ps1 script file should take less than 3 minutes.</p>
+            </div>
+            <div class="row">
+                <h5>Initialisation</h5>
+            </div>
+            <div class="row">
+                <p>The user will create a folder called 'gitHubAutomation' (case sensitive) in the C:\ directory.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205165651-9bfe60bb-1b91-4786-aac9-b6da45e0a3e2.png" alt="create new directory" />
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <p>The user will then drag the repoCloning.ps1 file into this folder. The user will later create a token.ps1 file in this folder.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205165862-f1c1a8e5-3bd1-4a8c-89e7-610ec88156ff.png" alt="add repoCloning.ps1 to directory" />
+            </div>
+            <br />
+            <div class="row">
+                <h5>GitHub Personal Access Token creation</h5>
+            </div>
+            <div class="row">
+                <p>The user will create a GitHub account using their Nintex account and set up Two-Factor Authentication if they have not done so already. The user will then click their profile picture located in the top right of a GitHub page and click on 'Settings'.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205044834-655401ea-1f63-4e9f-8e4c-d38f234e3bd4.png" alt="" />
+            </div>
+            <br />
+            <div class="row">
+                <p>Once in settings, the user will scroll down and click on 'Developer Settings' located under the Archive section.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205045363-ed9fd0ea-f3c7-44e4-9157-c45b3e0b6b1b.png" alt="" />
+            </div>
+            <br />
+            <div class="row">
+                <p>Once in developer settings, the user will click 'Personal access tokens' then click on 'Tokens (classic)' in the dropdown.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205045565-79f1d927-e183-4358-a700-449a33378220.png" alt="" />
+            </div>
+            <br />
+            <div class="row">
+                <p>The user will then click on 'Generate new token' and click on the classic option.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205046213-4fe66af2-c1ac-48ce-8bdd-def9e22965bc.png" alt="" />
+            </div>
+            <br />
+            <div class="row">
+                <p>The user will then get prompted to confirm their access via Two-Factor Authentication. After that is done, the user will generate a token with the following accesses: repo, workflow and read:org</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205043891-7f73b134-1100-4488-8ca7-bf919e2bad8f.png" alt="" />
+            </div>
+            <br />
+            <div class="row">
+                <p>After generating and saving the token, the user must authorise the token by clicking 'Configure SSO' then 'NintexGlobal'. This will redirect you to another page to confirm it.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205200144-7a282625-b2ba-4c9c-ac4e-42ccc20f7fc6.png" alt="" />
+            </div>
+            <div class="row">
+                <h5>Creating the token.ps1 file</h5>
+            </div>
+            <div class="row">
+                <p>After creating the access token, the user will create a token.ps1 file. The user will open Notepad (or any text editor) and enter <code>$gitHubToken = "Access Token Here"</code>. Replace <code>Access Token Here</code> with the token the user just created.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205050526-6bc9cf41-0b3b-46f1-a145-d46c0e5eaf56.png" alt="" />
+            </div>
+            <br />
+            <div class="row">
+                <p>The user will save the file to the gitHubAutomation folder created earlier. When doing so, make sure to change the file type to 'All Files' and name the file 'token.ps1'.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205166941-36d0d336-735f-413b-a836-026e55e97ed2.png" alt="" />
+            </div>
+            <br />
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205168081-a4cdc3eb-5975-40e7-88af-fbd0d61dc528.png" alt="" />
+            </div>
+            <br />
+            <div class="row">
+                <h5>Running the script</h5>
+            </div>
+            <div class="row">
+                <p>The user will then open powershell terminal in the gitHubAutomation folder and run the script. If the github access token and token.ps1 file was made correctly the gitHub promapp core and client repositories will be cloned.</p>
+            </div>
+            <div class="row">
+                <img class="border-black img-contain" src="https://user-images.githubusercontent.com/119271309/205178738-1673c281-f564-4d92-a1c6-06014404e84b.png" alt="" />
+            </div>
+            <div class="row">
+                <p>The script file and the token file will then delete itself for security purposes.</p>
+            </div>
+            <br />
+            <div class="row">
+                <h3>Web.config setup</h3>
+            </div>
+            <div class="row">
+                <p>1. To run the script, first ensure that your Promapp directory is set up in the correct location. The existing Web.config file should have the following path: <code>C:/Development/promapp-core/PromappMvc/Web.config</code></p>
+            </div>
+            <div class="row">
+                <p>2. Once you've confirmed the location of Web.config, open main.ps1 and add the secrets to the following line <code>.\webConfigSetup.ps1 -UserTokenSecret "&lt;UserTokenSecret&gt;" -ApiTokenSecret "&lt;ApiTokenSecret&gt;" -ValidationKey "&lt;ValidationKey&gt;" -DecryptionKey "&lt;DecryptionKey&gt;" -DbPassword "&lt;DbPassword&gt;"</code></p>
+            </div>
+            <div class="row">
+                <p>3. The secrets can be found in the following lastpass entries</p>
+            </div>
+            <ul>
+                <li>UserTokenSecret - Promapp User Secret Config</li>
+                <li>ApiTokenSecret - Promapp ApiTokenSecret</li>
+                <li>ValidationKey & DecryptionKey - Promapp Machine Key Config</li>
+                <li>DbPassword - No standalone lastpass entry for this one but it's listed in 'Promapp DB & SwitchBoard Connection strings' at 'Password=********'</li>
+            </ul>
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

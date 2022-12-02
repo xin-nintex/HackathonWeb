@@ -612,6 +612,13 @@ progress {
   height: auto;
 }
 
+.img-contain {
+  height: 50vh;
+  object-fit: contain !important;
+  width: auto !important;
+  margin: auto !important;
+}
+
 .figure {
   display: inline-block;
 }
@@ -6847,6 +6854,10 @@ textarea.form-control-lg {
 
 .border {
   border: 1px solid #dee2e6 !important;
+}
+
+.border-black {
+  border: 1px solid black !important;
 }
 
 .border-0 {
